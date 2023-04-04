@@ -1,6 +1,9 @@
-import { NavDropdown, Navbar, Nav, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavDropdown, Navbar, Nav, Container, Button } from "react-bootstrap";
+import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 const HeaderNavBar = () => {
+
+    const authContext = useAuth();
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
@@ -26,7 +29,11 @@ const HeaderNavBar = () => {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                        Signed in as: <a href="#login">Mark Otto</a>
+                       {authContext.username}
+                       <span style={{marginLeft:"10px"}}>
+                            <Button variant="light" onClick={()=> authContext.clearSession()}>Sign Out</Button>
+                       </span>
+                      
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
