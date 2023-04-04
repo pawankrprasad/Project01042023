@@ -1,8 +1,13 @@
-import { Card, Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Card, Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const ForgotPassword = () => {
 
+    const style = {
+        display: "flex",
+        justifyContent: "space-between"
+    }
 
    
     const onLoginHandler = (e) =>{
@@ -20,9 +25,12 @@ const ForgotPassword = () => {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
+                        <div style={style}>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                            <Link to="../login" relative="path">Login</Link>
+                        </div>
                     </Form>
                 </Card.Body>
             </Card>

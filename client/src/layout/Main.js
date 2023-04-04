@@ -4,11 +4,24 @@ import HeaderNavBar from "../component/HeaderNavBar";
 import  { useAuth } from '../context/AuthContext';
 
 
+
+const MainContainer = ({children}) =>{
+    return(
+        <div className="main_container">
+            {children}
+        </div>
+    )
+}
+
+
 const ProtectedPage = () =>{
     return(
         <>
         <HeaderNavBar />
-        <Outlet />
+        <MainContainer>
+                 <Outlet />
+        </MainContainer>
+        
     </>
     )
 }
