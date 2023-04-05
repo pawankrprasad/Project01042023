@@ -14,9 +14,9 @@ const getConnection = async() =>{
 }
 
 
-const validateUserLogin = async (email, password) =>{
+const validateUserLogin = async (email) =>{
 
-    const query = `SELECT id, email, name, active FROM user WHERE email = '${email}' AND password = '${password}'`
+    const query = `SELECT id, email, name, password, active FROM user WHERE email = '${email}'`
     const connection = await getConnection();
     const [rows] = await connection.execute(query);
     return rows;
