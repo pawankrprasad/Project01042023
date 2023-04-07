@@ -1,17 +1,9 @@
+const { getConnection } = require('./connections');
+
+
 // get the client
-const mysql = require('mysql2/promise');
 
 
-const getConnection = async() =>{
-        // create the connection to database
-        const connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: "root",
-            database: 'dbtest'
-        });
-        return connection;
-}
 
 
 const validateUserLogin = async (email) =>{
@@ -21,7 +13,7 @@ const validateUserLogin = async (email) =>{
     const [rows] = await connection.execute(query);
     return rows;
 }
-
+getConnection
 module.exports = {
     validateUserLogin
 }

@@ -14,16 +14,9 @@ const HeaderNavBar = () => {
                         <Nav.Link href="#" >
                             Home
                         </Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
+                        <NavDropdown title="Products" id="basic-nav-dropdown">
+                            <Link to='/product/list' class="dropdown-item">Product List</Link>
+                            <Link to='/product/add' class="dropdown-item">Add Product</Link>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

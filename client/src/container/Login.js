@@ -5,7 +5,8 @@ import { useState } from "react";
 import { doLogin } from '../axios/api';
 
 import { useForm } from "react-hook-form";
-
+import { toast } from "react-toastify";
+ 
 const Login = () => {
 
     const [error, setError] = useState();
@@ -27,7 +28,9 @@ const Login = () => {
             authContext.createSession(token, name);
             navigate('/')
         }catch(error){
-            setError(error.response.data.error)
+
+            toast.error(error.response.data.error)
+            //setError(error.response.data.error)
         }
     }
 
@@ -46,7 +49,7 @@ const Login = () => {
                     <Form onSubmit={handleSubmit(onLoginHandler)}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" 
+                            <Form.Control type="text" 
                             placeholder="Enter email" 
                             {...register('email', {required: "Enter your email address"})}
                             />
@@ -71,7 +74,7 @@ const Login = () => {
                        
                             <div style={style}>
                                 <Button variant="primary" type="submit" disabled ={!isValid}>
-                                    Submit
+                                    Login
                                 </Button>
                                 <Link to="../forgot-password" relative="path">Forgot Password</Link>
                             </div>
@@ -81,7 +84,6 @@ const Login = () => {
 
                 </Card.Body>
             </Card>
-
         </div>
     )
 
