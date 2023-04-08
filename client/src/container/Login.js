@@ -28,13 +28,9 @@ const Login = () => {
             authContext.createSession(token, name);
             navigate('/')
         }catch(error){
-
-            toast.error(error.response.data.error)
-            //setError(error.response.data.error)
+            toast.error(error.error)
         }
     }
-
-
 
     return (
         <div>
@@ -70,8 +66,7 @@ const Login = () => {
                             <Form.Text className="text-danger">
                                  {errors.password?.message}
                             </Form.Text>
-                        </Form.Group>
-                       
+                        </Form.Group>   
                             <div style={style}>
                                 <Button variant="primary" type="submit" disabled ={!isValid}>
                                     Login

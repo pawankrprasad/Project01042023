@@ -4,11 +4,14 @@ const SECRET = "jflkdjslfkdsoiu23o4isdnf2384uodnflskajrskljj34i5udfnsdlfksdjfaso
 
 
 const generateToken = (payload) =>{
-
   return JWT.sign(payload, SECRET);
+}
 
+const verifyToken = (token) =>{
+ return JWT.verify(token, SECRET);
 }
 
 module.exports = {
-    generateToken
+    generateToken,
+    verifyToken
 }

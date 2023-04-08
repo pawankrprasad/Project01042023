@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { doGetProductList } from "../../axios/api";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify';
 
 
 const TableRow = ({item}) =>{
@@ -23,16 +24,16 @@ const ProductList = () =>{
     const [products, setProducts] = useState([]);
 
     useEffect(()=>{
-
         loadProduct();
-
-
     },[]);
 
     const loadProduct = async() =>{
-        const result = await doGetProductList();
-        console.log(result)
-        setProducts(result)
+        try{
+            const result = await doGetProductList();
+            setProducts(result)
+        }catch(error){
+            toast.error(error.errorMessage)
+        }
     }
 
     return (
