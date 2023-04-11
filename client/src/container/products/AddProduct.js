@@ -53,10 +53,6 @@ const MultiCheckBox = () =>{
 
 
 const AddProduct = () => {
-
-
-
-
     const category = [
         { name: "Electronic", checked: false },
         { name: "Stationary", checked: false },
@@ -67,16 +63,15 @@ const AddProduct = () => {
    const { register, handleSubmit, formState : {  errors } } = useForm({
      resolver: yupResolver(schema)
    });
-
-
-
    const navigate = useNavigate();
 
+
+
+
+
    const handleFormSubmit = async(data) =>{
-        console.log(data);
-        // const result = await doCreateProduct(data);
-        // console.log(result);
-        // navigate('/product/list');
+        const result = await doCreateProduct(data);
+        navigate('/product/list');
    }
 
 

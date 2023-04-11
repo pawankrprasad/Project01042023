@@ -4,4 +4,5 @@ export const doLogin = async ({email, password}) => HTTP.post('/account/login', 
 
 
 export const doGetProductList = async () => HTTP.get('/products');
+export const doGetProduct = async (id) => HTTP.get(`/products/${id}`);
 export const doCreateProduct = async (payload) => HTTP.post('/products', payload);

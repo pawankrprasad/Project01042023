@@ -6,6 +6,9 @@ import {toast} from 'react-toastify';
 
 
 const TableRow = ({item}) =>{
+
+  const navigate =  useNavigate();
+
     return (
         <tr>
             <td>{item.id}</td>
@@ -13,6 +16,9 @@ const TableRow = ({item}) =>{
             <td>{item.brand}</td>
             <td>{item.description}</td>
             <td>{item.price}</td>
+            <td>
+                <Button variant="success" onClick={()=> navigate(`/product/detail/${item.id}`)} >Detail</Button>
+            </td>
         </tr>
     )
 }
@@ -48,6 +54,7 @@ const ProductList = () =>{
           <th>Brand</th>
           <th>Description</th>
           <th>Price</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>    

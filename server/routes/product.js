@@ -1,15 +1,26 @@
 const express = require('express');
-const { getProducts, saveProduct } = require('../database/product.dao');
+const { getProducts, saveProduct, getProduct } = require('../database/product.dao');
+const authorization = require('../middleware/authorization');
 
 const router = express.Router();
 
 
-router.get('/', async(req, res)=>{
+router.get('/', authorization('product.read'),  async(req, res)=>{
     const products = await getProducts(); 
     return res.send(products);
 })
 
-router.post('/', async(req, res)=> {
+//product/7
+router.get('/:id', authorization('product.read'), async(req, res)=>{
+    const {id} = req.params;
+    const product = await getProduct(id); 
+    if(product.length > 0) {
+        return res.send(product[0]);
+    }
+    return res.send({})
+})
+
+router.post('/', authorization('product.write'), async(req, res)=> {
     const data = req.body;
     const product = await saveProduct(data); 
     console.log(product)

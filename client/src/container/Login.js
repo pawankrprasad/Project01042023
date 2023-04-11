@@ -9,8 +9,6 @@ import { toast } from "react-toastify";
  
 const Login = () => {
 
-    const [error, setError] = useState();
-
     const style = {
         display: "flex",
         justifyContent: "space-between"
@@ -21,6 +19,8 @@ const Login = () => {
    const authContext = useAuth();
 
   const { register, formState:  { isValid, errors },  handleSubmit} = useForm();
+
+  console.log(errors);
     const onLoginHandler = async(data) =>{
 
         try{
@@ -37,17 +37,13 @@ const Login = () => {
             <Card style={{ padding: "20px", width:"400px" }}>
                 <Card.Title>Login</Card.Title>
                 <Card.Body>
-                    
-                    {error && <Alert variant="danger">
-                                {error}
-                    </Alert>}
-                
                     <Form onSubmit={handleSubmit(onLoginHandler)}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="text" 
                             placeholder="Enter email" 
-                            {...register('email', {required: "Enter your email address"})}
+                            name = "email"
+                            {...register('email', {required: "Email Field is required"})}
                             />
                             <Form.Text className="text-danger">
                                  {errors.email?.message}
@@ -61,14 +57,15 @@ const Login = () => {
                             <Form.Control 
                             type="password" 
                             placeholder="Password" 
-                            {...register('password',{ required: "Enter your password" })}
+                            name = "password"
+                            {...register('password', { required: "Password Field is required" })}
                             />
                             <Form.Text className="text-danger">
                                  {errors.password?.message}
                             </Form.Text>
                         </Form.Group>   
                             <div style={style}>
-                                <Button variant="primary" type="submit" disabled ={!isValid}>
+                                <Button variant="primary" type="submit" disabled={!isValid} >
                                     Login
                                 </Button>
                                 <Link to="../forgot-password" relative="path">Forgot Password</Link>

@@ -7,6 +7,7 @@ import ForgotPassword from "./container/ForgotPassword";
 import Product from "./container/products/Product";
 import ProductList from "./container/products/ProductList";
 import AddProduct from "./container/products/AddProduct";
+import ProductDetail from "./container/products/ProductDetail";
 
 const AppRouters = () => {
     return (
@@ -21,6 +22,7 @@ const AppRouters = () => {
                     <Route path="" element={<Navigate to="/product/list" />} />
                     <Route path="list" element={< ProductList />} />
                     <Route path="add" element={< AddProduct />} />
+                    <Route path="detail/:id" element={< ProductDetail />} />
                 </Route>
             </Route>
             <Route path="*" element={<h1>Page Not Found</h1>}/>

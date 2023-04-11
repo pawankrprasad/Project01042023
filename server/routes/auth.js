@@ -15,7 +15,7 @@ router.post('/login', async(req, res, next)=> {
        const isPasswordValid = await bcrypt.compare(password, user[0].password);
         if(isPasswordValid){
             const {id, email, name } = user[0];
-            const token = jwt.generateToken({id,email});
+            const token = jwt.generateToken({id,email, permissions: ['product.read','product.write']});
             res.send({token, name});
         }else{
             next(new UnAuthorize("User name or password is invalid."))

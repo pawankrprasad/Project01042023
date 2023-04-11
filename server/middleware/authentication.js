@@ -7,7 +7,8 @@ const authentication = (req, res, next) => {
         const { authorization } = req.headers;
         if(authorization){
             const [, token] = authorization.split(" ");
-            verifyToken(token);
+            const payload =  verifyToken(token);
+            req.userContext = payload;
             next();
         }else{
             next(new UnAuthorize("Authorization token in missing in request header."));
@@ -15,8 +16,6 @@ const authentication = (req, res, next) => {
     }catch(error){
         next(new UnAuthorize("Invalid Token"));
     }
-    
-    
 }
 
 module.exports = {
